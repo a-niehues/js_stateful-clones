@@ -5,7 +5,7 @@ function transformStateWithClones(state, actions) {
   let lastState = { ...state };
 
   for (const action of actions) {
-    const currentState = { ...lastState };
+    let currentState = { ...lastState };
 
     switch (action.type) {
       case 'addProperties':
@@ -23,7 +23,7 @@ function transformStateWithClones(state, actions) {
         break;
 
       default:
-        break;
+        throw new Error('Unknown action type: ' + action.type);
     }
 
     stateHistory.push(currentState);
